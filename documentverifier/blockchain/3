@@ -1,0 +1,27 @@
+{
+    "data": {
+        "student_datails": {
+            "name": "Mavine Wechul Musin",
+            "id_number": 133124,
+            "kra_pin": 213412,
+            "email_address": "mavo@g.net",
+            "huduma_number": 12021124,
+            "profile_url": "https://cdn4.vectorstock.com/i/1000x1000/40/83/hacker-icon-on-white-background-flat-style-vector-26994083.jpg"
+        },
+        "accademic_details": {
+            "institution_name": "Rongo University",
+            "institution_id": 1,
+            "date_of_graduation": "123124",
+            "course": "Computer Science"
+        },
+        "accademic_paper": {
+            "file_url": "https://docs.google.com/document/d/1WyenTEXXFzDvE66o5N7KHIeCIXZmwFfCRvON8ZuRisM/edit",
+            "verified": false
+        }
+    },
+    "prev_block": {
+        "hash": "d4f909a9a30afa20dc0717a30cae9f59",
+        "file_name": "2"
+    },
+    "doc_hash": "238e792117dbbfd84ceaff79fca4f9f6"
+}

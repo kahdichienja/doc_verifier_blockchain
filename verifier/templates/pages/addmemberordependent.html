@@ -1,0 +1,82 @@
+{% extends "base2.html" %}
+{% load static %}
+{% block content %}
+{% include "utils/navbar.html" %}
+<div class="row">
+    <div class="col s12 m12 l6">
+        <div class="card">
+            <form action="{% url 'profile' %}" method="POST" class=" card col s12">
+                {% csrf_token %}
+                <h4>Add Member Details</h4>
+                <div class="row">
+                    <div class="col s12">
+                        <hr>
+                        <div class="row">
+                            <div class="input-field col s12 l12">
+                                <i class="material-icons prefix">person_outline</i>
+                                {{form.name}}
+                                <label for="id_name">Full Name</label>
+                            </div>
+                            <div class="input-field col s12 l12">
+                                <i class="material-icons prefix">dialpad</i>
+                                {{form.phone}}
+                                <label for="id_phone">Telephone</label>
+                            </div>
+                            <div class="input-field col s12 l12">
+                                <i class="material-icons prefix">fingerprint</i>
+                                {{form.id_number}}
+                                <label for="id_number">Id Number</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row col s12 center">
+                    <input type="submit" value="Submit" class="btn right" name="submit">
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="col s12 m12 l6">
+        <div class="card">
+            <form action="{% url 'addDep' %}" method="POST" class="card col s12">
+                {% csrf_token %}
+                <h4>Add Dependant Details</h4>
+                <div class="row">
+                    <div class="col s12">
+                        <hr>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <select name="member_id">
+                                  <option value="" disabled selected>Choose The Member</option>
+                                  {% for member in member_qs %}
+                                  <option value="{{member.id}}">{{member.name}}: {{member.phone}}</option>
+                                  {% endfor %}
+                                </select>
+                                <label>Select Member</label>
+                              </div>
+                            <div class="input-field col s12 l12">
+                                <i class="material-icons prefix">person_outline</i>
+                                {{depform.name}}
+                                <label for="id_namee">Full Name</label>
+                            </div>
+                            <div class="input-field col s12 l12">
+                                <i class="material-icons prefix">dialpad</i>
+                                {{depform.phone}}
+                                <label for="id_phonee">Telephone</label>
+                            </div>
+                            <div class="input-field col s12 l12">
+                                <i class="material-icons prefix">fingerprint</i>
+                                {{depform.id_number}}
+                                <label for="id_numberr">Id Number</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row col s12 center">
+                    <input type="submit" value="Submit" class="btn right" name="submit">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

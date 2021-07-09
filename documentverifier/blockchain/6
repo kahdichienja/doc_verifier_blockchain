@@ -1,0 +1,27 @@
+{
+    "data": {
+        "student_datails": {
+            "name": "sirname othe",
+            "id_number": "3495u2359",
+            "kra_pin": "238923",
+            "email_address": "user@g.net",
+            "huduma_number": "8r7y2837",
+            "profile_url": "profiles/pexels-simon-berger-1323550_cE1TwxC.jpg"
+        },
+        "accademic_details": {
+            "institution_name": "Rongo University",
+            "institution_id": 1,
+            "date_of_graduation": "Jul 05, 2021",
+            "course": "English"
+        },
+        "accademic_paper": {
+            "file_url": "docs/pexels-simon-berger-1323550_vP6l7JY.jpg",
+            "verified": true
+        }
+    },
+    "prev_block": {
+        "hash": "ee9207206fb7eaa3a268c2841f16a421",
+        "file_name": "5"
+    },
+    "doc_hash": "306358c701370cf74569c2055391d1b4"
+}

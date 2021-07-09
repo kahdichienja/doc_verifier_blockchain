@@ -1,0 +1,64 @@
+{% extends "base2.html" %}
+{% load static %}
+{% block content %}
+{% include "utils/navbar.html" %}
+<div class="row">
+    <div class="col s12 m8 l8">
+        <div class="row">
+            <form action="/verify/" method="post">
+                {% csrf_token %}
+                <div class="input-field col s12 l12">
+                    <i class="material-icons prefix">insert_link</i>
+                    <input type="text" name="hash_finger_pring" required>
+    
+                    <label for="id_address">Paste document fingerprint</label>
+                </div>
+                <div class="input-field col s12 l4">
+                    <button type="submit" class="btn btn-primary submit-btn btn-block">Verify</button>
+                </div>
+            </form>
+        </div>
+        <ul class="collection">
+            <h4>Certificate Info: </h4>
+            {% for r in res %}
+            <ul class="collapsible">
+                <li>
+                    <div class="collapsible-header">
+                        <i class="material-icons blue-text">person_outline</i>
+                        Student Name: {{r.chained_data.data.student_datails.name}}
+                        <span class="badge"><i class="material-icons green-text">remove_red_eye</i></span>
+                    </div>
+                    <div class="collapsible-body">
+                        <h5 class="green-text">Certificate accademic details: </h5>
+                        <hr>
+                        <div class="">
+                            <span>
+                                <i class="material-icons blue-text">person_outline</i>
+                                Profile:
+                                <span class="badge">
+
+                                    <a href="">
+                                        <img src="{{r.chained_data.data.student_datails.profile_url}}"
+                                            style="height: 50px; width: 50px; border-radius: 50%;" alt="">
+                                    </a>
+                                </span>
+                            </span>
+
+                        </div>
+                        <!-- <p><i class="material-icons">receipt</i>Certificate Number: </p> -->
+                        <p><i class="material-icons green-text">filter_vintage</i>Cert. Valid: {{r.valid}}</p>
+                        <p><i class="material-icons">assignment_turned_in</i>Institution Name: {{r.chained_data.data.accademic_details.institution_name}} </p>
+                        <p><i class="material-icons">block</i>Decipline: {{r.chained_data.data.accademic_details.course}}</p>
+                        <p><i class="material-icons">date_range</i>Graduation Date: {{r.chained_data.data.accademic_details.date_of_graduation}}</p>
+                        <p><i class="material-icons">content_copy</i>Copy Hash For Share: &nbsp; {{r.chained_data.doc_hash}} </p>
+                        <p><i class="material-icons">cloud_download</i>Certificate Format: <a href="{{r.chained_data.data.accademic_paper.file_url}}">Download</a> </p>
+
+                    </div>
+                </li>
+            </ul>
+            {% endfor %}
+
+        </ul>
+    </div>
+</div>
+{% endblock %}

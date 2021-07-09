@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static %}
+    <link href="{% static 'dashboard/fonts/font.css' %}" rel="stylesheet">
+
+    <link type="text/css" rel="stylesheet" href="{% static 'dashboard/css/materialize.css' %}"
+        media="screen,projection" />
+    <script type="text/javascript" src="{% static 'dashboard/js/jqueryajax.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'dashboard/js/chartjs.min.js' %}"></script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+
+    <style>
+        body {
+            background-color: #e0e0e0;
+        }
+
+        #searchInput {
+            margin: 70px 90px 8px 60rem;
+            width: 50%;
+            background-color: #9e9e9e9e;
+            border-radius: 5px;
+            border-bottom: 0px;
+        }
+
+        #liHover:hover {
+            text-decoration: none;
+            background: white;
+        }
+
+        #sidenavLinks {
+            position: relative;
+            top: -4.25rem;
+            left: 3rem;
+        }
+
+        div#btnfooter {
+            margin-top: -2rem;
+            background: #efefef;
+        }
+
+        #searchInput::placeholder {
+            padding: 20px;
+            color: #ffffff;
+            font-family: 'Roboto'sans-serif;
+        }
+
+        .main-img img,
+        .imgs img {
+            width: 100%;
+            cursor: pointer;
+        }
+
+        .imgs {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            grid-gap: 8px;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            animation: fadeIn 1.5s ease-in 1 forwards;
+        }
+
+        @media (max-width: 650px) {
+            #searchInput {
+                margin: 70px 90px 8px 30rem;
+                width: 10%;
+            }
+
+            #searchInput::placeholder {
+                padding: 0;
+                background-color: #fff;
+                height: auto;
+            }
+        }
+    </style>
+    <title>Dashboard</title>
+</head>
+
+<body>
+
+
+    {% block content %}
+
+
+    {% endblock %}
+    <div class="fixed-action-btn">
+        <a href="" class="btn-floating btn-large red waves-effect waves-light modal-trigger">
+            <i class="large material-icons">mode_edit</i>
+        </a>
+    </div>
+    <script type="text/javascript" src="{% static 'dashboard/js/materialize.min.js' %}"></script>
+    <script>
+        $(document).ready(function () {
+            $('.sidenav').sidenav();
+            $('.modal').modal();
+            $('.fixed-action-btn').floatingActionButton();
+            $('.dropdown-trigger').dropdown();
+            $('.materialboxed').materialbox();
+            $('.collapsible').collapsible();
+            $('.carousel').carousel();
+            $('.chips').chips();
+            $('select').formSelect();
+            $('.datepicker').datepicker({
+                maxDate: new Date(),
+            });
+        });
+
+    </script>
+    {% if messages %}
+    {% for  message in messages %}
+    <script>
+        M.toast({ html: "{{message}}", classes: "rounded" });
+    </script>
+    {% endfor %}
+    {% endif %}
+
+</body>
+
+</html>

@@ -1,0 +1,27 @@
+{
+    "data": {
+        "student_datails": {
+            "name": "Agoo Clinton",
+            "id_number": "123124",
+            "kra_pin": "242412",
+            "email_address": "agoo@g.net",
+            "huduma_number": "2141241",
+            "profile_url": "profiles/pexels-simon-berger-1323550_kwZUgaH.jpg"
+        },
+        "accademic_details": {
+            "institution_name": "Rongo University",
+            "institution_id": 1,
+            "date_of_graduation": "Jul 04, 2021",
+            "course": "241212"
+        },
+        "accademic_paper": {
+            "file_url": "241212",
+            "verified": true
+        }
+    },
+    "prev_block": {
+        "hash": "319f463156c2a6c8aa90535a3260a7a5",
+        "file_name": "4"
+    },
+    "doc_hash": "618df4ec8a9d27c90f0aa0cc460a6d22"
+}

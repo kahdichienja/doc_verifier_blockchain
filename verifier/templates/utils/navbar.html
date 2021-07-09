@@ -1,0 +1,56 @@
+{% load static %}
+<div class="navbar-fixed">
+    <nav class="white lighten-5 hoverable navbar-fixed">
+        <div class="nav-wrapper">
+            <a href="/" style="margin-left: 25px;" id="myToggler" class="left brand-logo grey-text lighten-2">
+                Crypto | Docs
+            </a>
+            <ul class="right">
+                <li>
+                    <a href="" class="hide-on-small-only">
+                        <i class="material-icons grey-text lighten-2">apps</i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
+<div class="container">
+    <ul id="slide-out" class="sidenav">
+        <li>
+            <div class="user-view">
+                <div class="background">
+                    <img src="{% static 'dashboard/img/bg.jpeg' %}">
+                </div>
+                <a href="#user"><img class="circle" src="{% static 'dashboard/img/user.jpeg' %}"></a>
+                <a href="#name"><span class="white-text name">admin@g.net</span></a>
+                <a href="#email"><span class="white-text email">admin@g.net</span></a>
+            </div>
+        </li>
+        <li>
+            <a class="" href="/dashboard">
+                <i class="material-icons">apps</i> All Documents
+            </a>
+        </li>
+        <li>
+            <a class="" href="/add_block_doc">
+                <i class="material-icons">mode_edit</i> Add Document Block
+            </a>
+        </li>
+        <li>
+            <a class="" href="/verify">
+                <i class="material-icons">assignment_turned_in</i> Very Document Block
+            </a>
+        </li>
+        <li>
+            <div class="divider"></div>
+        </li>
+        <li>
+            <a href="/logout/">
+                <i class="material-icons text-red">visibility_off</i> 
+                logout
+            </a>
+        </li>
+
+    </ul>
+    <a href="#" data-target="slide-out" class="sidenav-trigger mt-3 white-text"><i class="material-icons">menu</i></a>
