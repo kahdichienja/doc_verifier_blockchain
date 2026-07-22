@@ -3,62 +3,84 @@
 {% block content %}
 {% include "utils/navbar.html" %}
 <div class="row">
-    <div class="col s12 m8 l8">
-        <div class="row">
+    <div class="col s12 m10 l8 offset-m1 offset-l2">
+        <div class="card" style="padding: 24px;">
             <form action="/verify/" method="post">
                 {% csrf_token %}
                 <div class="input-field col s12 l12">
                     <i class="material-icons prefix">insert_link</i>
-                    <input type="text" name="hash_finger_pring" required>
-    
+                    <input type="text" name="hash_finger_pring" id="id_address" required>
                     <label for="id_address">Paste document fingerprint</label>
                 </div>
                 <div class="input-field col s12 l4">
-                    <button type="submit" class="btn btn-primary submit-btn btn-block">Verify</button>
+                    <button type="submit" class="btn btn-primary submit-btn blue darken-2">Verify</button>
                 </div>
             </form>
-        </div>
-        <ul class="collection">
-            <h4>Certificate Info: </h4>
-            {% for r in res %}
-            <ul class="collapsible">
-                <li>
-                    <div class="collapsible-header">
-                        <i class="material-icons blue-text">person_outline</i>
-                        Student Name: {{r.chained_data.data.student_datails.name}}
-                        <span class="badge"><i class="material-icons green-text">remove_red_eye</i></span>
-                    </div>
-                    <div class="collapsible-body">
-                        <h5 class="green-text">Certificate accademic details: </h5>
-                        <hr>
-                        <div class="">
-                            <span>
-                                <i class="material-icons blue-text">person_outline</i>
-                                Profile:
-                                <span class="badge">
 
-                                    <a href="">
-                                        <img src="{{r.chained_data.data.student_datails.profile_url}}"
-                                            style="height: 50px; width: 50px; border-radius: 50%;" alt="">
-                                    </a>
-                                </span>
-                            </span>
+            {% if res %}
+                <div class="verification-results" style="margin-top: 30px;">
+                    {% for r in res %}
+                        <div style="background-color: #efefef; padding: 30px; font-family: sans-serif; border-radius: 4px; margin-bottom: 20px;">
+                            <!-- Profile Section -->
+                            <h2 style="font-size: 30px; font-weight: 400; margin: 0 0 8px 0; color: #222;">Profile</h2>
+                            <hr style="border: none; border-top: 1px solid #ccc; margin: 0 0 20px 0;">
 
+                            <div style="display: flex; gap: 25px; align-items: flex-start; margin-bottom: 35px;">
+                                <div>
+                                    {% if r.chained_data.data.student_datails.profile_url %}
+                                        <img src="{{r.chained_data.data.student_datails.profile_url}}" alt="Profile Photo" style="width: 140px; height: 160px; object-fit: cover;">
+                                    {% else %}
+                                        <div style="width: 140px; height: 160px; background-color: #ddd; display: flex; align-items: center; justify-content: center;">
+                                            <i class="material-icons large grey-text">person</i>
+                                        </div>
+                                    {% endif %}
+                                </div>
+                                <div style="font-size: 16px; line-height: 2.1; color: #333;">
+                                    <div><span style="color: #555;">Name:</span> {{r.chained_data.data.student_datails.name|default:"N/A"}}</div>
+                                    <div><span style="color: #555;">ID Number:</span> {{r.chained_data.data.student_datails.id_number|default:"N/A"}}</div>
+                                    <div><span style="color: #555;">Huduma Number:</span> {{r.chained_data.data.student_datails.huduma_number|default:"N/A"}}</div>
+                                    <div><span style="color: #555;">Date of Birth:</span> {{r.chained_data.data.student_datails.date_of_birth|default:"N/A"}}</div>
+                                </div>
+                            </div>
+
+                            <!-- Certificate Detail Section -->
+                            <h2 style="font-size: 30px; font-weight: 400; margin: 0 0 8px 0; color: #222;">Certificate Detail</h2>
+                            <hr style="border: none; border-top: 1px solid #ccc; margin: 0 0 20px 0;">
+
+                            <div style="font-size: 16px; line-height: 2.1; color: #333;">
+                                <div><span style="color: #555;">Institution Name:</span> {{r.chained_data.data.accademic_details.institution_name|default:"N/A"}}</div>
+                                <div><span style="color: #555;">Faculty/School:</span> {{r.chained_data.data.accademic_details.faculty_school|default:"N/A"}}</div>
+                                <div><span style="color: #555;">Course:</span> {{r.chained_data.data.accademic_details.course|default:"N/A"}}</div>
+                                <div><span style="color: #555;">Student Reg. Number:</span> {{r.chained_data.data.accademic_details.student_reg_number|default:"N/A"}}</div>
+                                <div><span style="color: #555;">Date of Graduation:</span> {{r.chained_data.data.accademic_details.date_of_graduation|default:"N/A"}}</div>
+                                <div><span style="color: #555;">Certificate Number:</span> {{r.chained_data.data.accademic_details.certificate_number|default:"N/A"}}</div>
+                                <div><span style="color: #555;">Class:</span> {{r.chained_data.data.accademic_details.classification|default:"N/A"}}</div>
+                                <div>
+                                    <span style="color: #555;">Certificate Status:</span>
+                                    {% if r.valid == "True" or r.valid == True %}
+                                        <span style="color: #4CAF50; font-weight: 500;">Valid</span>
+                                    {% else %}
+                                        <span style="color: #F44336; font-weight: 500;">Invalid</span>
+                                    {% endif %}
+                                </div>
+                                <div style="margin-top: 15px;">
+                                    <span style="color: #555;">Copy Hash for Share:</span><br>
+                                    <span style="word-break: break-all; color: #444; font-size: 15px;">{{r.chained_data.doc_hash}}</span>
+                                </div>
+                                <div style="margin-top: 20px; line-height: 1.8;">
+                                    {% if r.chained_data.data.accademic_paper.file_url %}
+                                        <div><a href="{{r.chained_data.data.accademic_paper.file_url}}" target="_blank" style="color: #2196F3; text-decoration: none;">View Certificate</a></div>
+                                    {% endif %}
+                                    {% if r.chained_data.data.accademic_paper.transcript_url %}
+                                        <div><a href="{{r.chained_data.data.accademic_paper.transcript_url}}" target="_blank" style="color: #2196F3; text-decoration: none;">View Transcript</a></div>
+                                    {% endif %}
+                                </div>
+                            </div>
                         </div>
-                        <!-- <p><i class="material-icons">receipt</i>Certificate Number: </p> -->
-                        <p><i class="material-icons green-text">filter_vintage</i>Cert. Valid: {{r.valid}}</p>
-                        <p><i class="material-icons">assignment_turned_in</i>Institution Name: {{r.chained_data.data.accademic_details.institution_name}} </p>
-                        <p><i class="material-icons">block</i>Decipline: {{r.chained_data.data.accademic_details.course}}</p>
-                        <p><i class="material-icons">date_range</i>Graduation Date: {{r.chained_data.data.accademic_details.date_of_graduation}}</p>
-                        <p><i class="material-icons">content_copy</i>Copy Hash For Share: &nbsp; {{r.chained_data.doc_hash}} </p>
-                        <p><i class="material-icons">cloud_download</i>Certificate Format: <a href="{{r.chained_data.data.accademic_paper.file_url}}">Download</a> </p>
-
-                    </div>
-                </li>
-            </ul>
-            {% endfor %}
-
-        </ul>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
     </div>
 </div>
 {% endblock %}

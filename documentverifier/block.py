@@ -96,6 +96,12 @@ def write_block(
     date_of_graduation,
     course,
     file_url,
+    date_of_birth="",
+    faculty_school="",
+    student_reg_number="",
+    certificate_number="",
+    classification="",
+    transcript_url="",
     verified=False,
 ):
     blocks_count = len(os.listdir(BLOCKDIR)) 
@@ -108,15 +114,24 @@ def write_block(
                 "kra_pin": kra_pin,
                 "email_address": email_address,
                 "huduma_number": huduma_number,
+                "date_of_birth": date_of_birth,
                 "profile_url": profile_url,
             },
             "accademic_details": {
                 "institution_name": institution_name,
                 "institution_id": institution_id,
+                "faculty_school": faculty_school,
                 "date_of_graduation": date_of_graduation,
                 "course": course,
+                "student_reg_number": student_reg_number,
+                "certificate_number": certificate_number,
+                "classification": classification,
             },
-            "accademic_paper": {"file_url": file_url, "verified": verified},
+            "accademic_paper": {
+                "file_url": file_url,
+                "transcript_url": transcript_url,
+                "verified": verified,
+            },
         },
 
         "prev_block": {"hash": get_hash(prev_block), "file_name": prev_block},

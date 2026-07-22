@@ -1,0 +1,33 @@
+{
+    "data": {
+        "student_datails": {
+            "name": "Us Vin",
+            "id_number": "123456",
+            "kra_pin": "12345",
+            "email_address": "uservin@g.net",
+            "huduma_number": "1213213",
+            "date_of_birth": "Jan 01, 1990",
+            "profile_url": "/media/profiles/Screenshot_2025-11-15_at_22.54.47.png"
+        },
+        "accademic_details": {
+            "institution_name": "Rongo University",
+            "institution_id": 1,
+            "faculty_school": "Science",
+            "date_of_graduation": "Dec 01, 2020",
+            "course": "Computer portatile ",
+            "student_reg_number": "CSC/000/1001",
+            "certificate_number": "1234567",
+            "classification": "Second upper"
+        },
+        "accademic_paper": {
+            "file_url": "/media/docs/Screenshot_2025-11-15_at_22.54.47.png",
+            "transcript_url": "/media/transcripts/Screenshot_2025-11-15_at_22.54.47.png",
+            "verified": true
+        }
+    },
+    "prev_block": {
+        "hash": "03a7e8a25609d5740bc44969cc7a582f",
+        "file_name": "7"
+    },
+    "doc_hash": "3a40828fdeef53f0840b0852b60b1c55"
+}

@@ -2,7 +2,7 @@
 {% load static %}
 {% block content %}
 {% include "utils/navbar.html" %}
-<div class="row card">
+<div class="row card" style="padding: 20px;">
     <form action="/add_block_doc/" method="POST" class="col s12" enctype="multipart/form-data">
         {% csrf_token %}
         <h4> Add Document</h4>
@@ -14,88 +14,119 @@
                 <div class="row">
                     <div class="input-field col s12 l4">
                         <i class="material-icons prefix">person_outline</i>
-                        <input type="text" name="sirname">
-                        <label for="id_lecturer_sirname">Sirname</label>
+                        <input type="text" name="sirname" required>
+                        <label for="sirname">Surname</label>
                     </div>
                     <div class="input-field col s12 l4">
                         <i class="material-icons prefix">person_outline</i>
-                        <input type="text" name="othername">
-
-                        <label for="id_other_name">Other Names</label>
+                        <input type="text" name="othername" required>
+                        <label for="othername">Other Names</label>
                     </div>
                     <div class="input-field col s12 l4">
                         <i class="material-icons prefix">mail</i>
-                        <input type="text" name="email_address">
-
-                        <label for="id_email">Email Address</label>
+                        <input type="email" name="email_address" required>
+                        <label for="email_address">Email Address</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12 l4">
                         <i class="material-icons prefix">dialpad</i>
-                        <input type="text" name="id_number">
-                        <label for="id_lecturer_sirname">Id Number</label>
+                        <input type="text" name="id_number" required>
+                        <label for="id_number">ID Number</label>
                     </div>
-
                     <div class="input-field col s12 l4">
                         <i class="material-icons prefix">fingerprint</i>
-                        <input type="text" name="kra_pin">
-                        <label for="id_lecturer_sirname">KRA PIN</label>
+                        <input type="text" name="kra_pin" required>
+                        <label for="kra_pin">KRA PIN</label>
                     </div>
                     <div class="input-field col s12 l4">
                         <i class="material-icons prefix">dialpad</i>
-                        <input type="text" name="huduma_number">
-                        <label for="id_lecturer_sirname">Huduma Number</label>
+                        <input type="text" name="huduma_number" required>
+                        <label for="huduma_number">Huduma Number</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12 l4">
+                        <i class="material-icons prefix">cake</i>
+                        <input type="text" name="date_of_birth" placeholder="e.g. JAN 01, 1990" required>
+                        <label for="date_of_birth" class="active">Date of Birth</label>
                     </div>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col s12">
-                <h6>2: Accademic Details.</h6><br>
+                <h6>2: Academic Details.</h6><br>
                 <hr>
                 <div class="row">
-                    
                     <div class="input-field col s12 l4">
                         <i class="material-icons prefix">location_city</i>
-                        <select name="institution_id">
+                        <select name="institution_id" required>
                             <option value="" disabled selected>Select University</option>
-
-                            
                             {% for institution in qs %}
                                 <option value="{{institution.id}}">{{institution}}</option>
                             {% endfor %}
-                          </select>
-                          <label>Select University</label>
+                        </select>
+                        <label>Select University</label>
                     </div>
                     <div class="input-field col s12 l4">
-                        <i class="material-icons prefix">perm_contact_calendar</i>
-                        <input type="text" name="date_of_graduation" class="datepicker">
-
-                        <label for="id_tel">Date Of graduation</label>
+                        <i class="material-icons prefix">account_balance</i>
+                        <input type="text" name="faculty_school" required>
+                        <label for="faculty_school">Faculty / School</label>
                     </div>
                     <div class="input-field col s12 l4">
                         <i class="material-icons prefix">receipt</i>
-                        <input type="text" name="course">
-                        <label for="id_user_id_or_pe_nember">Course</label>
+                        <input type="text" name="course" required>
+                        <label for="course">Course</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12 l4">
+                        <i class="material-icons prefix">assignment_ind</i>
+                        <input type="text" name="student_reg_number" required>
+                        <label for="student_reg_number">Student Reg. Number</label>
+                    </div>
+                    <div class="input-field col s12 l4">
+                        <i class="material-icons prefix">perm_contact_calendar</i>
+                        <input type="text" name="date_of_graduation" placeholder="e.g. DEC 01, 2020" required>
+                        <label for="date_of_graduation" class="active">Date Of Graduation</label>
+                    </div>
+                    <div class="input-field col s12 l4">
+                        <i class="material-icons prefix">verified_user</i>
+                        <input type="text" name="certificate_number" required>
+                        <label for="certificate_number">Certificate Number</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12 l4">
+                        <i class="material-icons prefix">grade</i>
+                        <input type="text" name="classification" placeholder="e.g. SECOND CLASS UPPER DIV" required>
+                        <label for="classification" class="active">Class / Classification</label>
                     </div>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col s12">
-                <h6>3: Accademic Paper Upload.</h6><br>
+                <h6>3: Certificate & Transcript Upload.</h6><br>
                 <hr>
-                <div class="row p3">
-                    <div class="file-field input-field col s12 l4">
-                        <div class="btn" style="padding: 20px;">
-                            <span style="margin-left: -50px;">
-                                <i class="material-icons prefix black-text">attachment</i>
-                            </span>
-                            <input type="file" name="file_url">
+                <div class="row">
+                    <div class="file-field input-field col s12 l6">
+                        <div class="btn">
+                            <span><i class="material-icons left">attachment</i> Certificate</span>
+                            <input type="file" name="file_url" required>
                         </div>
                         <div class="file-path-wrapper">
-                            <input class="file-path validate" type="text">
+                            <input class="file-path validate" type="text" placeholder="Upload Certificate Document" required>
+                        </div>
+                    </div>
+                    <div class="file-field input-field col s12 l6">
+                        <div class="btn">
+                            <span><i class="material-icons left">attachment</i> Transcript</span>
+                            <input type="file" name="transcript_file" required>
+                        </div>
+                        <div class="file-path-wrapper">
+                            <input class="file-path validate" type="text" placeholder="Upload Academic Transcript" required>
                         </div>
                     </div>
                 </div>
@@ -105,23 +136,21 @@
             <div class="col s12">
                 <h6>4: Student Profile Picture.</h6><br>
                 <hr>
-                <div class="row p3">
-                    <div class="file-field input-field col s12 l4">
-                        <div class="btn" style="padding: 20px;">
-                            <span style="margin-left: -50px;">
-                                <i class="material-icons prefix black-text">attachment</i>
-                            </span>
-                            <input type="file" name="profile_url">
+                <div class="row">
+                    <div class="file-field input-field col s12 l6">
+                        <div class="btn">
+                            <span><i class="material-icons left">account_box</i> Photo</span>
+                            <input type="file" name="profile_url" required>
                         </div>
                         <div class="file-path-wrapper">
-                            <input class="file-path validate" type="text">
+                            <input class="file-path validate" type="text" placeholder="Upload Profile Picture" required>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="row col s12 center">
-            <button type="submit" class="btn btn-primary submit-btn btn-block right">submit</button>
+        <div class="row col s12 center" style="margin-top: 20px;">
+            <button type="submit" class="btn btn-primary submit-btn btn-block right blue darken-2">Submit Document</button>
         </div>
     </form>
 </div>

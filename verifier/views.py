@@ -97,47 +97,64 @@ def add_block_doc(request):
         kra_pin = request.POST.get("kra_pin")
         email_address = request.POST.get("email_address")
         huduma_number = request.POST.get("huduma_number")
-        profile_url = request.FILES["profile_url"]
-        # institution_name = request.POST.get("institution_name")
+        date_of_birth = request.POST.get("date_of_birth")
+        profile_url = request.FILES.get("profile_url")
+
         institution_id = request.POST.get("institution_id")
+        faculty_school = request.POST.get("faculty_school")
         date_of_graduation = request.POST.get("date_of_graduation")
         course = request.POST.get("course")
-        file_url = request.FILES["file_url"]
+        student_reg_number = request.POST.get("student_reg_number")
+        certificate_number = request.POST.get("certificate_number")
+        classification = request.POST.get("classification")
+
+        file_url = request.FILES.get("file_url")
+        transcript_file = request.FILES.get("transcript_file")
         verified = True
 
-        # print(request.POST)
-        # print(request.FILES)
-
-        DocumentBlockModel.objects.create(
+        newBlock = DocumentBlockModel.objects.create(
             name=student_name,
             id_number=id_number,
             kra_pin=kra_pin,
             email_address=email_address,
             huduma_number=huduma_number,
+            date_of_birth=date_of_birth,
             profile_url=profile_url,
             institution_id=institution_id,
+            faculty_school=faculty_school,
             date_of_graduation=date_of_graduation,
             course=course,
+            student_reg_number=student_reg_number,
+            certificate_number=certificate_number,
+            classification=classification,
             file_url=file_url,
+            transcript_file=transcript_file,
             verified=verified,
         )
 
-        newBlock = DocumentBlockModel.objects.latest("id")
-
         write_block(
-            student_name= newBlock.name,
+            student_name=newBlock.name,
             id_number=newBlock.id_number,
             kra_pin=newBlock.kra_pin,
             email_address=newBlock.email_address,
             huduma_number=newBlock.huduma_number,
-            profile_url= newBlock.profile_url.url,
+            date_of_birth=newBlock.date_of_birth or "",
+            profile_url=newBlock.profile_url.url if newBlock.profile_url else "",
             institution_name=newBlock.institution.institution_name,
             institution_id=newBlock.institution.id,
-            date_of_graduation= newBlock.date_of_graduation,
-            course= newBlock.course,
-            file_url=  newBlock.file_url.url,
-            verified= newBlock.verified,
+            faculty_school=newBlock.faculty_school or "",
+            date_of_graduation=newBlock.date_of_graduation or "",
+            course=newBlock.course or "",
+            student_reg_number=newBlock.student_reg_number or "",
+            certificate_number=newBlock.certificate_number or "",
+            classification=newBlock.classification or "",
+            file_url=newBlock.file_url.url if newBlock.file_url else "",
+            transcript_url=newBlock.transcript_file.url if newBlock.transcript_file else "",
+            verified=newBlock.verified,
         )
+
+        messages.success(request, "Document Block Added Successfully!")
+        return redirect("/dashboard/")
 
     return render(request, template_name, context)
 

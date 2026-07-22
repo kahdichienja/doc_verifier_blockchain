@@ -21,13 +21,19 @@ class DocumentBlockModel(models.Model):
 
     email_address = models.CharField(max_length = 191) 
     huduma_number = models.CharField(max_length = 191) 
+    date_of_birth = models.CharField(max_length = 191, blank=True, null=True)
     profile_url = models.FileField(upload_to="profiles") 
 
     institution = models.ForeignKey(Institution, on_delete=models.CASCADE)
+    faculty_school = models.CharField(max_length = 191, blank=True, null=True)
     date_of_graduation = models.CharField(max_length = 191) 
     course = models.CharField(max_length = 191) 
+    student_reg_number = models.CharField(max_length = 191, blank=True, null=True)
+    certificate_number = models.CharField(max_length = 191, blank=True, null=True)
+    classification = models.CharField(max_length = 191, blank=True, null=True)
 
     file_url = models.FileField(upload_to="docs") 
+    transcript_file = models.FileField(upload_to="transcripts", blank=True, null=True)
     verified = models.BooleanField(default=True) 
     file_name = models.CharField(max_length = 191) 
 
