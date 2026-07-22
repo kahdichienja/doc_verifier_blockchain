@@ -4,6 +4,7 @@ iniconfig==2.3.0
 packaging==26.2
 pluggy==1.6.0
 pytest==8.2.2
+pytest-asyncio==0.26.0
 pytz==2026.2
 setuptools==83.0.0
 sqlparse==0.5.5
