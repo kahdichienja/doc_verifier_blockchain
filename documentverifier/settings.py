@@ -26,6 +26,25 @@ SECRET_KEY = 'gr0qp#shu%3p=qsg_y@bmz!b6(5-^cs9#ka^x!p@pbixs@+-^c'
 DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+
+DEFAULT_CSRF_TRUSTED_ORIGINS = [
+    "https://doc-verifier-blockchain.onrender.com",
+    "http://localhost:8000",
+    "http://127.0.0.1:8000",
+]
+
+render_host = os.getenv("RENDER_EXTERNAL_HOSTNAME")
+if render_host:
+    DEFAULT_CSRF_TRUSTED_ORIGINS.append(f"https://{render_host}")
+
+env_trusted_origins = os.getenv("CSRF_TRUSTED_ORIGINS", "")
+if env_trusted_origins:
+    DEFAULT_CSRF_TRUSTED_ORIGINS.extend(
+        [origin.strip() for origin in env_trusted_origins.split(",") if origin.strip()]
+    )
+
+CSRF_TRUSTED_ORIGINS = list(dict.fromkeys(DEFAULT_CSRF_TRUSTED_ORIGINS))
 
 
 # Application definition
