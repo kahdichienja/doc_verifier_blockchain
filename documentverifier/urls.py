@@ -26,9 +26,9 @@ urlpatterns = [
     path('verify/', verify),
     path('dashboard/', dashboard),
     path('add_block_doc/', add_block_doc),
-    path('login/', loginView),
-    path('registration/', registerView),
-    path('logout/', loguotView),
+    path('login/', loginView, name='login'),
+    path('registration/', registerView, name='registration'),
+    path('logout/', loguotView, name='logout'),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

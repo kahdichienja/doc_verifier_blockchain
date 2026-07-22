@@ -28,17 +28,14 @@ def registerView(request):
             username = form.cleaned_data.get("username")
             messages.success(request, f"Account created for {username}! Now Login")
             form.save()
-            return redirect("/login/")
-        else:
-            messages.warning(
-                request, f"Something went wrong please fil in the form correctly"
-            )
-            form.save()
-            return redirect("/registration/")
+            return redirect("login")
 
-    else:
-        form = UserRegisterForm()
+        messages.warning(
+            request, "Something went wrong, please fill in the form correctly"
+        )
+        return render(request, template_name, {"form": form})
 
+    form = UserRegisterForm()
     return render(request, template_name, {"form": form})
 
 
